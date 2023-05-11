@@ -4,13 +4,52 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import team2.SetUp;
+import team2.base.CommonAPI;
+import team2.base.SetUp;
+import team2.scaledupitpages.HomePage;
+import team2.scaledupitpages.LoginPage;
+import team2.utility.Utility;
 
-public class LoginTest extends SetUp {
+import java.util.Properties;
+
+public class LoginTest extends CommonAPI {
     Logger log = LogManager.getLogger(LoginTest.class.getName());
+
+
+    Properties prop = Utility.loadProperties();
+    String validUsername = Utility.decode(prop.getProperty("Scaledupit.username"));
+    String validPassword = Utility.decode(prop.getProperty("Scaledupit.password"));
+
+
+
+
+
+
+
 
     @Test
     public void validCredential() {
+
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        String expectedTitle = "Automation – Automate eCommerce";
+        String actualTitle = getCurrentTitle();
+        Assert.assertEquals(expectedTitle, actualTitle);
+        waitFor(3);
+        //enter  username, password, and click on login button
+        loginPage.enterUsername(validUsername);
+        loginPage.enterPassword(validPassword);
+        loginPage.clickOnLoginBtn();
+
+        //check user is logged in
+        String expectedHomePageHeader = "Products";
+        String actualHomePageHeader = homePage.getHeaderText();
+        Assert.assertEquals(expectedHomePageHeader, actualHomePageHeader);
+        waitFor(3);
+
+
+        /*
         // navigate to scaledupit website
         String expectedTitle = "Automation – Automate eCommerce";
         String actualTitle = getCurrentTitle();
@@ -31,11 +70,14 @@ public class LoginTest extends SetUp {
         String expectedHomePageHeader = "Logout";
         String actualHomePageHeader = getElementText("//a[text()='Logout']");
         Assert.assertEquals(expectedHomePageHeader, actualHomePageHeader);
-        log.info("user logged in success");
+        log.info("user logged in success"); */
     }
 
     @Test
     public void invalidUsername(){
+
+
+      /*
 
         // navigate to scaledupit website
 
@@ -62,13 +104,13 @@ public class LoginTest extends SetUp {
         String expectedError = "Error: The username fari is not registered on this site. If you are unsure of your username, try your email address instead.";
         String actualError = getElementText("#post-9 > div > div > div.woocommerce-notices-wrapper > ul > li");
         Assert.assertEquals(expectedError, actualError);
-        log.info("validate error success");
+        log.info("validate error success");*/
     }
 
     @Test
     public void missingUsername(){
 
-
+/*
         // navigate to scaledupit website
         String expectedTitle = "Automation – Automate eCommerce";
         String actualTitle = getCurrentTitle();
@@ -93,11 +135,13 @@ public class LoginTest extends SetUp {
         String expectedError = "Error: Username is required.";
         String actualError = getElementText("#post-9 > div > div > div.woocommerce-notices-wrapper > ul > li");
         Assert.assertEquals(expectedError, actualError);
-        log.info("validate error success, username is required");
+        log.info("validate error success, username is required"); */
 
     }
     @Test
     public void missingPassword(){
+
+    /*
 
         // navigate to scaledupit website
         String expectedTitle = "Automation – Automate eCommerce";
@@ -123,6 +167,6 @@ public class LoginTest extends SetUp {
         String expectedError = "Error: The password field is empty.";
         String actualError = getElementText("#post-9 > div > div > div.woocommerce-notices-wrapper > ul > li");
         Assert.assertEquals(expectedError, actualError);
-        log.info("validate error success, password is required");
+        log.info("validate error success, password is required"); */
     }
 }

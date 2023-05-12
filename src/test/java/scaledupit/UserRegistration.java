@@ -2,10 +2,8 @@ package scaledupit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import team2.base.CommonAPI;
-import team2.base.SetUp;
 
 public class UserRegistration extends CommonAPI {
 

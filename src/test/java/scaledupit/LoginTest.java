@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import team2.base.CommonAPI;
-import team2.base.SetUp;
 import team2.scaledupitpages.HomePage;
 import team2.scaledupitpages.LoginPage;
 import team2.utility.Utility;
@@ -78,7 +77,7 @@ public class LoginTest extends CommonAPI {
 
 
       /*
-
+        // change to git
         // navigate to scaledupit website
 
         String expectedTitle = "Automation – Automate eCommerce";
